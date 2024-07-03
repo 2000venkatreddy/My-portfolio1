@@ -37,6 +37,16 @@
     transform: scale(1.1);
 }
 
+.logo span {
+    transition: color 0.3s ease;
+}
+
+.logo span:hover {
+    color: orangered;
+}
+
+
+
 .navbar a {
     font-size: 18px;
     font-family: 'Times New Roman', Times, serif; /* Times New Roman font */
@@ -48,11 +58,23 @@
 }
 
 .navbar a:hover {
-    border-bottom: 3px solid gray;
+    border-bottom: 3px solid orangered;
 }
 
 .fas {
     display: none;
+}
+
+header .fas {
+    display: none;
+}
+
+
+
+@media (min-width: 769px) {
+    header .fa-bars {
+        display: none; /* Hide fa-bars icon on desktop screens */
+    }
 }
 
 
@@ -234,27 +256,74 @@ header .fas{
 }
 
 .services-list1 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust min-width as needed */
-    grid-gap: 40px;
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: space-between; /* Adds space between items */
     margin-top: 20px; /* Adjust as needed */
 }
 
 .work1 {
+    flex: 1 1 100%; /* Default to full width */
+    margin: 10px; /* Adjust margin as needed */
     border-radius: 10px;
     position: relative;
     overflow: hidden;
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
 }
 
 .work1 img {
-    width: 100%;
+    width: 80%;
+    height: 300px;
     border-radius: 10px;
-    display: inline;
+    display: block; /* Changed from inline to block */
     margin-bottom: 20px; /* Add bottom margin to the image */
 }
 
-.work1:hover img{
-    transform:scale(1.1);
+.work1:hover img {
+    transform: scale(1.1);
+}
+
+/* Add media query for larger screens */
+@media (min-width: 768px) {
+    .work1 {
+        flex: 1 1 calc(33.333% - 20px); /* Three items per row */
+    }
+
+    .work1 img {
+        height: 200px; /* Adjust height for larger screens */
+    }
+}
+
+/* Add media query for small screens */
+@media (max-width: 768px) {
+    .work1 {
+        margin: 5px; /* Adjust margin for smaller screens */
+    }
+
+    .work1 img {
+        width: 350px;
+        height: 500px; /* Adjust height for smaller screens */
+        margin: 0 auto; /* Center image horizontally */
+    }
+    .layer1 h7, .layer1 h8, .layer1 h9 {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        text-align: center; /* Ensure text is centered */
+    }
+}
+
+/* Add media query for very small screens */
+@media (max-width: 480px) {
+    .work1 {
+        margin: 5px; /* Adjust margin for smaller screens */
+    }
+
+    .work1 img {
+        height: 120px; /* Adjust height for very small screens */
+        margin: 0 auto; /* Center image horizontally */
+    }
+    
 }
 
 .layer1 a {
@@ -474,6 +543,20 @@ header .fas{
 
 
 
+/* Add media query for small screens */
+@media (max-width: 768px) {
+    .work-list {
+        grid-template-columns: 1fr; /* Change to a single column layout */
+        grid-gap: 20px; /* Adjust gap as needed */
+    }
+
+    .work {
+        margin-bottom: 20px; /* Add bottom margin for spacing between items */
+    }
+}
+
+
+
 /*-----------------------------------------------------certification--------------------------------------------------------------------*/
 #certification-section {
     background: #f6f5ef; /* Background color covering entire section */
@@ -594,23 +677,22 @@ footer {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5em;
     margin-bottom: 30px;
-    text-align: left;
-    margin-left: -300px; /* Ensure no left margin */
+    text-align: center; /* Center align the text */
+    padding-left: 20px; /* Add padding on the left to move text towards right */
+    padding-right: 20px; /* Add padding on the right to balance the spacing */
 }
 
+
+/* Default styles */
 .social-icons {
-    display: flex; /* Use flexbox to align items */
-    align-items: center; /* Center icons vertically */
-    justify-content: flex-start; /* Align icons to the left */
-    margin-left: -300px; /* Add some space above the social icons */
-    margin-top: -20px;
+    text-align: center; /* Center align icons by default */
 }
 
 .social-icons a {
-    color: #333;
-    margin: 0 10px;
-    font-size: 2em;
-    text-decoration: none;
+    display: inline-block;
+    margin: 0 10px; /* Adjust margin for spacing between icons */
+    font-size: 24px; /* Adjust icon size as needed */
+    color:#666;
 }
 
 .social-icons a:hover {
@@ -624,8 +706,8 @@ footer {
 .footer-bottom p {
     font-size: 1em;
     color: #666;
-    text-align: right;
-    margin-right: 300px; /* Adjust this value to control how far from the right edge the text is */
+    text-align: left;
+    margin-left: 100px; /* Adjust this value to control how far from the right edge the text is */
     margin-bottom: 40px ;
 }
 
@@ -654,6 +736,79 @@ footer {
 
 
 /* Responsive styles */
+
+/* Toggle open/close menu for mobile view */
+@media (max-width: 768px) {
+    .header {
+        padding: 25px 29%;
+        color: #666;
+        flex-direction: column;
+        align-items: flex-start;  /* Align items to the left */
+        display: flex;
+    }
+
+    .logo {
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -200px;  /* Correct initial position */
+        width: 200px;
+        height: 100vh;
+        background: #ff004f;
+        padding-top: 50px;
+        transition: right 0.3s ease;
+    }
+
+
+    header .fa-bars {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 20px; /* Positioned on the left */
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    header .fa-times {
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 15px;
+        left: 20px; /* Positioned on the left */
+        font-size: 25px;
+        cursor: pointer;
+    }
+    
+}
+
+/* Reset menu for desktop view */
+@media (min-width: 769px) {
+    .navbar {
+        position: static;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        background: none;
+        height: auto;
+        width: auto;
+        padding-top: 0;
+        right: 0;
+        transition: none;
+    }
+
+    header .fas {
+        display: none;
+    }
+}
+
+
 @media (max-width: 768px) {
     .services-list {
         grid-template-columns: 1fr;
@@ -670,7 +825,7 @@ footer {
     .about-col-2 {
         text-align: center;
     }
-    /* Responsive styles for about section */
+/* Responsive styles for about section */
 @media (max-width: 768px) {
     .row1 {
         flex-direction: column;
@@ -715,7 +870,8 @@ footer {
         padding: 10px;
     }
 }
-    
+
+
 /* Responsive styles for project section */
 @media (max-width: 768px) {
     .work-list {
@@ -752,6 +908,7 @@ footer {
     }
 }
 }
+
 @media (max-width: 480px) {
     .header {
         padding: 25px 29%;
@@ -846,7 +1003,17 @@ footer {
     .layer a i {
         font-size: 16px;
     }
+/* Media query for screens up to 768px wide (typical tablets and mobile devices) */
+@media screen and (max-width: 768px) {
+    .social-icons {
+        text-align: center; /* Center align icons on smaller screens */
+    }
+
+    .social-icons a {
+        margin: 0 8px; /* Adjust margin for smaller screens */
+        font-size: 40px; /* Reduce icon size for smaller screens */
+    }
 }
 
-
+}
 
