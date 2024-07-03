@@ -8,6 +8,12 @@
     list-style: none;
 }
 
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 body {
     background-color: white;
     color: black;
@@ -48,14 +54,10 @@ body {
     margin: 0 10px;
     border-bottom: 3px solid transparent;
     transition: 0.3s ease;
-}
+}  
 
 .navbar a:hover {
     border-bottom: 3px solid gray;
-}
-
-.fas {
-    display: none;
 }
 
 #main-content {
@@ -90,7 +92,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color:skyblue;
+    color: skyblue;
     text-align: center;
 }
 
@@ -106,7 +108,7 @@ body {
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
     font-style: italic;
-    color:blue;
+    color: blue;
     margin-top: 0;
 }
 
@@ -115,24 +117,16 @@ body {
     color: white;
 }
 
-.down-arrow {
-    position: relative;
-    bottom: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.down-arrow a {
-    color: white;
-    font-size: 3em;
-    text-decoration: none;
-    align-items: center;
-    margin-bottom: auto;
+/* Default: Hide icons */
+.fas.fa-times,
+.fas.fa-bars {
+    display: none;
 }
 
 section {
     padding: 10px 12%;
     text-align: justify;
+    flex: 1; /* Ensure sections take remaining space */
 }
 
 h2 {
@@ -146,7 +140,7 @@ h2 {
 h3 {
     font-size: 1.5em;
     font-weight: bold;
-    color:skyblue;
+    color: skyblue;
     margin-bottom: 5px;
     margin-top: 25px;
 }
@@ -173,8 +167,9 @@ footer {
     background-color: darkgray; /* Adjust this as needed */
     padding: 40px 0;
     text-align: center;
-    color:black;
+    color: black;
     font-family: 'Times New Roman', Times, serif;
+    flex-shrink: 0; /* Ensure footer does not shrink */
 }
 
 .footer-content {
@@ -192,15 +187,13 @@ footer {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5em;
     margin-bottom: 30px;
-    text-align: left;
-    margin-left: -300px; /* Ensure no left margin */
+    text-align: center;
 }
 
 .social-icons {
     display: flex; /* Use flexbox to align items */
     align-items: center; /* Center icons vertically */
-    justify-content: flex-start; /* Align icons to the left */
-    margin-left: -300px; /* Add some space above the social icons */
+    justify-content: center; /* Center icons horizontally */
     margin-top: -20px;
 }
 
@@ -222,7 +215,82 @@ footer {
 .footer-bottom p {
     font-size: 1em;
     color: #666;
-    text-align: right;
-    margin-right: 300px; /* Adjust this value to control how far from the right edge the text is */
-    margin-bottom: 5px ;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* Media query for screens up to 768px wide (typical tablets and mobile devices) */
+@media (max-width: 768px) {
+    .header {
+        padding: 25px 29%;
+        color: #666;
+        flex-direction: column;
+        align-items: flex-start;  /* Align items to the left */
+        display: flex;
+        position: relative; /* Ensure header is relatively positioned for absolute icon placement */
+    }
+
+    .logo {
+        margin-bottom: 15px;
+        font-size: 15px;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -200px;  /* Correct initial position */
+        width: 200px;
+        height: 100vh;
+        background: #ff004f;
+        padding-top: 50px;
+        transition: right 0.3s ease;
+    }
+
+    /* Show bars icon and hide times icon in mobile view */
+    .header .fa-bars {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px; /* Adjust left position for icon placement */
+        font-size: 25px;
+        color: white; /* Ensure icon is visible against dark background */
+        cursor: pointer;
+        z-index: 101; /* Ensure icon is above the sidebar */
+    }
+
+    .header .fa-times {
+        display: none; /* Initially hidden */
+        position: absolute;
+        top: 15px;
+        left: 15px; /* Adjust left position for icon placement */
+        font-size: 25px;
+        color: white; /* Ensure icon is visible against dark background */
+        cursor: pointer;
+        z-index: 101; /* Ensure icon is above the sidebar */
+    }
+
+    /* Show social icons in responsive view and center them */
+    .social-icons {
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Center icons vertically */
+        justify-content: center; /* Center icons horizontally */
+        margin-top: 20px; /* Add space above the social icons */
+    }
+
+    .footer-content p {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.5em;
+        margin-bottom: 30px;
+        text-align: center;
+        margin-left: 0; /* Ensure no left margin */
+    }
+
+    .footer-bottom p {
+        margin-top: 20px;
+        margin-left: 0; /* Center the text */
+        text-align: center; /* Ensure centered text */
+    }
 }
