@@ -21,6 +21,11 @@
     z-index: 100;
 }
 
+.header span {
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
 .logo {
     font-size: 25px;
     color: white;
